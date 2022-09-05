@@ -55,7 +55,7 @@ public class DatabaseTests {
      * @throws SQLException SQL failure
      */
     @Test
-    @Disabled
+//    @Disabled
     public void genresTable() throws IOException, SQLException {
         assertTrue(manager.executeSql("create_genres.sql"));
         assertTrue(manager.verifyTable(new GenresTableValidator("Genres")));
@@ -68,7 +68,7 @@ public class DatabaseTests {
      * @throws SQLException SQL failure
      */
     @Test
-    @Disabled
+//    @Disabled
     public void booksTable() throws IOException, SQLException {
         assertTrue(manager.executeSql("create_genres.sql"));
         assertTrue(manager.executeSql("create_books.sql"));
@@ -81,7 +81,7 @@ public class DatabaseTests {
      * @throws IOException the SQL code file was not found
      */
     @Test
-    @Disabled
+//    @Disabled
     public void insertGenres() throws IOException {
         assertTrue(manager.executeSql("create_genres.sql"));
         assertTrue(manager.executeSql("create_books.sql"));
@@ -94,7 +94,7 @@ public class DatabaseTests {
      * @throws IOException the SQL code file was not found
      */
     @Test
-    @Disabled
+//    @Disabled
     public void insertBooks() throws IOException {
         assertTrue(manager.executeSql("create_genres.sql"));
         assertTrue(manager.executeSql("create_books.sql"));
@@ -108,7 +108,7 @@ public class DatabaseTests {
      * @throws IOException the SQL code file was not found
      */
     @Test
-    @Disabled
+//    @Disabled
     public void findAllGenres() throws IOException {
         assertTrue(manager.executeSql("create_genres.sql"));
         assertTrue(manager.executeSql("create_books.sql"));
@@ -123,7 +123,7 @@ public class DatabaseTests {
      * @throws IOException the SQL code file was not found
      */
     @Test
-    @Disabled
+//    @Disabled
     public void findIOGenres() throws IOException {
         assertTrue(manager.executeSql("create_genres.sql"));
         assertTrue(manager.executeSql("create_books.sql"));
@@ -138,7 +138,7 @@ public class DatabaseTests {
      * @throws IOException the SQL code file was not found
      */
     @Test
-    @Disabled
+//    @Disabled
     public void findAllBooks() throws IOException {
         assertTrue(manager.executeSql("create_genres.sql"));
         assertTrue(manager.executeSql("create_books.sql"));
@@ -153,7 +153,7 @@ public class DatabaseTests {
      * @throws IOException the SQL code file was not found
      */
     @Test
-    @Disabled
+//    @Disabled
     public void findHistoryBooks() throws IOException {
         assertTrue(manager.executeSql("create_genres.sql"));
         assertTrue(manager.executeSql("create_books.sql"));

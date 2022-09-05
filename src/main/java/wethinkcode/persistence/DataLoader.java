@@ -46,9 +46,19 @@ public class DataLoader {
      * @return true if the data was successfully inserted, otherwise false
      */
     public boolean insertGenres() {
-        return false;
+        for(Genre genre: genres.values()){
+            PreparedStatement ps;
+            String code = genre.getCode();
+            String description=genre.getDescription();
+            try {
+                ps=connection.prepareStatement("INSERT INTO Genres (code, description) VALUES (\""+code+"\", \""+description+"\");");
+                ps.execute();
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return true;
     }
-
     /**
      * 3.2 (part 1) Complete this method
      * <p>
@@ -57,8 +67,20 @@ public class DataLoader {
      * @return true if the data was successfully inserted, otherwise false
      */
     public List<Book> insertBooks() throws SQLException {
-        return null;
+        insertGenres();
+        for(Book book: books){
+            PreparedStatement ps;
+            String title = book.getTitle();
+            String genre_code = book.getGenre().getCode();
+            ps = connection.prepareStatement("INSERT INTO Books (title, genre_code) VALUES (\"" + title + "\", \"" + genre_code + "\");");
+            ps.execute();
+            ResultSet s = ps.getGeneratedKeys();
+            s.next();
+            book.assignId(s.getInt(1));
+        }
+        return books;
     }
+//
 
     /**
      * Get the last id generated from the prepared statement
@@ -71,6 +93,18 @@ public class DataLoader {
         ResultSet generatedKeys = s.getGeneratedKeys();
         if (!generatedKeys.next()) throw new SQLException("Id was not generated");
         return generatedKeys.getInt(1);
+    }
+
+    protected boolean genres_execute(String sql) {
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.execute();
+        } catch (SQLException e) {
+            return false;
+        }
+
+        return true;
     }
 }
 

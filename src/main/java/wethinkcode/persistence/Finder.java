@@ -32,7 +32,16 @@ public class Finder {
      * @throws SQLException the query failed
      */
     public List<Genre> findAllGenres() throws SQLException {
-        return null;
+        PreparedStatement ps;
+        List<Genre> Genreslist = new ArrayList<>();
+        ps = connection.prepareStatement("SELECT * FROM Genres;");
+        ps.execute();
+        ResultSet GenreResults = ps.getResultSet();
+        while (GenreResults.next()) {
+            Genre genre = new Genre(GenreResults.getString("code"), GenreResults.getString("description"));
+            Genreslist.add(genre);
+        }
+        return Genreslist;
     }
 
     /**
@@ -45,7 +54,16 @@ public class Finder {
      * @throws SQLException the query failed
      */
     public List<Genre> findGenresLike(String pattern) throws SQLException {
-        return null;
+        PreparedStatement ps;
+        List<Genre> Genreslikelist = new ArrayList<>();
+        ps = connection.prepareStatement("SELECT * FROM Genres WHERE description LIKE '%"+pattern+"%';");
+        ps.execute();
+        ResultSet GenreResults = ps.getResultSet();
+        while (GenreResults.next()) {
+            Genre genrelike = new Genre(GenreResults.getString("code"), GenreResults.getString("description"));
+            Genreslikelist.add(genrelike);
+        }
+        return Genreslikelist;
     }
 
     /**
@@ -57,7 +75,16 @@ public class Finder {
      * @throws SQLException the query failed
      */
     public List<BookGenreView> findBooksAndGenres() throws SQLException {
-        return null;
+        PreparedStatement ps;
+        List<BookGenreView> BookAndGenrelist = new ArrayList<>();
+        ps = connection.prepareStatement("SELECT Books.title, Genres.description FROM Books INNER JOIN Genres on Books.genre_code = Genres.code;");
+        ps.execute();
+        ResultSet BookResults = ps.getResultSet();
+        while (BookResults.next()) {
+            BookGenreView BookAndGenre = new BookGenreView(BookResults.getString("title"), BookResults.getString("description"));
+            BookAndGenrelist.add(BookAndGenre);
+        }
+        return BookAndGenrelist;
     }
 
     /**
@@ -69,6 +96,14 @@ public class Finder {
      * @throws SQLException the query failed
      */
     public int findNumberOfBooksInGenre(String genreCode) throws SQLException {
-        return -1;
+        PreparedStatement ps;
+        int total=0;
+        ps = connection.prepareStatement("SELECT COUNT(*) FROM Books WHERE genre_code=\'"+genreCode+"\'");
+        ps.execute();
+        ResultSet NumberOfBookinGenre = ps.getResultSet();
+        while (NumberOfBookinGenre.next()) {
+            total = NumberOfBookinGenre.getInt(1);
+        }
+        return total;
     }
 }

@@ -50,7 +50,7 @@ public class WebTests {
      * Test for Exercise 4.1
      */
     @Test
-    @Disabled
+//    @Disabled
     public void termsAndConditions() throws IOException {
         Document tsandcs = Jsoup.connect("http://localhost:5000/ts_and_cs.html").get();
 
@@ -73,7 +73,7 @@ public class WebTests {
      * Test for Exercise 4.2
      */
     @Test
-    @Disabled
+//    @Disabled
     public void registrationForm() throws IOException {
         Document doc = Jsoup.connect("http://localhost:5000/register.html").get();
 
@@ -94,7 +94,7 @@ public class WebTests {
      * Test for Exercise 4.3
      */
     @Test
-    @Disabled
+//    @Disabled
     public void css() throws IOException {
         Document doc = Jsoup.connect("http://localhost:5000/register.html").get();
         var links = doc.head().getElementsByTag("link");
@@ -112,7 +112,7 @@ public class WebTests {
      * Test for Exercise 4.4
      */
     @Test
-    @Disabled
+//    @Disabled
     public void formValidation() throws IOException {
         Document doc = Jsoup.connect("http://localhost:5000/register.html").get();
         Element e = doc.getElementById("password");

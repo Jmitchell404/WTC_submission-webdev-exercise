@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <meta charset="UTF-8">
+    <title>New User Registration</title>
+</head>
+<body><p>
+    <h1>New User Registration</h1>
+  <form action="/action_page.php"><br>
+      <label for="firstname">Your first name:</label><br>
+      <input type="text" id="firstname" name="firstname" required autofocus pattern=""><br><br>
+      <label for="lastname">Your last name:</label><br>
+      <input type="text" id="lastname" name="lastname" required autofocus pattern=""><br><br>
+      <label for="email">Your email address:</label><br>
+      <input type="email" id="email" name="email" required autofocus pattern=""><br><br>
+      <label for="password">Your password must be at least 8 characters and must include numbers and uppercase letters:</label><br>
+      <input type="password" id="password" name="password" required autofocus pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]$" minlength="8"><br><br>
+      <label for="confirmpassword">Enter your password again to confirm it:</label><br>
+      <input type="password" id="confirmpassword" name="confirmpassword" required autofocus pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]$" minlength="8"><br><br>
+      <button type="submit"> Register</button><br><br>
+  </form>
+    <p> Read our <a href="./ts_and_cs.html">Terms and Conditions </a></p>
+</body>
+</html>

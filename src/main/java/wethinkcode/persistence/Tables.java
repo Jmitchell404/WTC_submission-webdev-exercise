@@ -25,7 +25,13 @@ public class Tables {
      * @return true if the table was successfully created, otherwise false
      */
     public boolean createGenres() {
-        return false;
+        boolean result = createTable("CREATE TABLE Genres (\n" +
+                "    code TEXT NOT NULL,\n" +
+                "    description TEXT NOT NULL,\n" +
+                "    PRIMARY KEY(code)\n" +
+                ");");
+
+        return result;
     }
 
     /**
@@ -35,7 +41,15 @@ public class Tables {
      * @return true if the table was successfully created, otherwise false
      */
     public boolean createBooks() {
-        return false;
+        createGenres();
+        boolean result = createTable("CREATE TABLE Books (\n" +
+                "    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,\n" +
+                "    title TEXT NOT NULL ,\n" +
+                "    genre_code TEXT NOT NULL ,\n" +
+                "    FOREIGN KEY(genre_code) REFERENCES Genres(code)\n" +
+                ");");
+
+        return result;
     }
 
     /**
@@ -48,6 +62,14 @@ public class Tables {
      * @return true if the command was successfully executed, else false
      */
     protected boolean createTable(String sql) {
-        return false;
+        PreparedStatement ps = null;
+        try {
+            ps = connection.prepareStatement(sql);
+            ps.execute();
+        } catch (SQLException e) {
+            return false;
+        }
+
+        return true;
     }
 }
